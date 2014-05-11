@@ -15,7 +15,7 @@ namespace Happy.Delegates.Test
         public void ExecuteFunc_Test()
         {
             var result = DelagateExecutor.New()
-                                    .RegisterInterceptor(new TestDelagateFilter())
+                                    .RegisterInterceptor(new TestDelagateInterceptor())
                                     .ExecuteFunc(this.TestFunc, "hello，", "world！");
 
             Assert.AreEqual("【hello，world！】", result);
@@ -25,7 +25,7 @@ namespace Happy.Delegates.Test
         public void ExecuteAction_Test()
         {
             DelagateExecutor.New()
-                            .RegisterInterceptor(new TestDelagateFilter())
+                            .RegisterInterceptor(new TestDelagateInterceptor())
                             .ExecuteAction(this.TestAction, "hello，", "world！");
         }
 
@@ -39,7 +39,7 @@ namespace Happy.Delegates.Test
             Console.WriteLine(arg1 + arg2);
         }
 
-        private sealed class TestDelagateFilter : IDelagateInterceptor
+        private sealed class TestDelagateInterceptor : IDelagateInterceptor
         {
             public object Intercept(IDelagateContext context)
             {
