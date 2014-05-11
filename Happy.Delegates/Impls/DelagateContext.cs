@@ -14,9 +14,7 @@ namespace Happy.Delegates.Impls
             = new List<DelagateArgument>();
         private int _currentFilterIndex = -1;
 
-        internal DelagateContext(
-            DelagateExecutor executor,
-            Func<object> delagateWapper)
+        internal DelagateContext(DelagateExecutor executor, Func<object> delagateWapper)
         {
             Check.MustNotNull("executor", "executor");
             Check.MustNotNull("delagateWapper", "delagateWapper");
@@ -25,10 +23,8 @@ namespace Happy.Delegates.Impls
             _delagateWapper = delagateWapper;
         }
 
-        internal DelagateContext(
-            DelagateExecutor executor,
-            Func<object> delagateWapper,
-            IEnumerable<DelagateArgument> arguments)
+        internal DelagateContext(DelagateExecutor executor, Func<object> delagateWapper,
+                                 IEnumerable<DelagateArgument> arguments)
             : this(executor, delagateWapper)
         {
             Check.MustNotNull("arguments", "arguments");

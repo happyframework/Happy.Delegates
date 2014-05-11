@@ -26,7 +26,7 @@ namespace Happy.Delegates
         }
 
         /// <summary>
-        /// 注册委托拦截器。
+        /// 注册<paramref name="interceptor"/>。
         /// </summary>
         public DelagateExecutor RegisterInterceptor(IDelagateInterceptor interceptor)
         {
