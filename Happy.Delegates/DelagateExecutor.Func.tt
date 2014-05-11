@@ -1,0 +1,74 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Happy.Delegates.Impls;
+
+namespace Happy.Delegates
+{
+    public sealed partial class DelagateExecutor
+    {
+		public TResult ExecuteFunc<TResult>(Func<TResult> func)
+		{
+			Func<object> delagateWapper = ()=> { 
+				return func(); 
+			};
+
+			var context = new DelagateContext(this, delagateWapper);
+
+			return (TResult)context.Next();
+		}
+<#
+for (var i = 1; i <= 16; i++)
+{
+	var genericParameters = Enumerable
+		.Range(1, i)
+		.Select(x => string.Format("T{0}", x));
+	var genericParametersStr = string.Join(", ", genericParameters);
+
+	var parameters = Enumerable
+		.Range(1, i)
+		.Select(x => string.Format("T{0} arg{0}", x));
+	var parametersStr = string.Join(", ", parameters);
+
+	var arguments = Enumerable
+		.Range(1, i)
+		.Select(x => string.Format("arg{0}", x));
+	var argumentsStr = string.Join(", ", arguments);
+#>
+
+		public TResult ExecuteFunc<<#= genericParametersStr #>, TResult>(Func<<#= genericParametersStr #>, TResult> func, <#= parametersStr #>)
+		{
+			Func<object> delagateWapper = ()=> { 
+				return func(<#= argumentsStr #>);
+			};
+
+			var arguments = new List<DelagateArgument>();
+<#
+for (var j = 1; j <= i; j++)
+{
+			var argumentTypeStr = string.Format("T{0}", j);
+			var argumentStr = string.Format("arg{0}", j);
+	#>
+			arguments.Add(new DelagateArgument(typeof(<#= argumentTypeStr #>), <#= argumentStr #>));
+<#
+}
+#>
+
+			var context = new DelagateContext(this, delagateWapper, arguments);
+
+			return (TResult)context.Next();
+		}
+<#
+}
+#>
+	}
+}
