@@ -43,34 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DelagateArgument.cs" />
-    <Compile Include="DelagateExecutor.Action.cs">
+    <Compile Include="DelegateArgument.cs" />
+    <Compile Include="DelegateExecutor.Action.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DelagateExecutor.Action.tt</DependentUpon>
+      <DependentUpon>DelegateExecutor.Action.tt</DependentUpon>
     </Compile>
-    <Compile Include="DelagateExecutor.cs" />
-    <Compile Include="DelagateExecutor.Func.cs">
+    <Compile Include="DelegateExecutor.cs" />
+    <Compile Include="DelegateExecutor.Func.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DelagateExecutor.Func.tt</DependentUpon>
+      <DependentUpon>DelegateExecutor.Func.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDelagateContext.cs" />
-    <Compile Include="IDelagateInterceptor.cs" />
-    <Compile Include="Impls\DelagateContext.cs" />
+    <Compile Include="IDelegateExecuteContext.cs" />
+    <Compile Include="IDelegateInterceptor.cs" />
+    <Compile Include="Impls\DelegateExecuteContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DelagateExecutor.Action.tt">
+    <None Include="DelegateExecutor.Action.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DelagateExecutor.Action.cs</LastGenOutput>
+      <LastGenOutput>DelegateExecutor.Action.cs</LastGenOutput>
     </None>
-    <None Include="DelagateExecutor.Func.tt">
+    <None Include="DelegateExecutor.Func.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DelagateExecutor.Func.cs</LastGenOutput>
+      <LastGenOutput>DelegateExecutor.Func.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

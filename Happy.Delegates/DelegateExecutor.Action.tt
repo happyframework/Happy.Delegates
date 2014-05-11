@@ -14,17 +14,19 @@ using Happy.Delegates.Impls;
 
 namespace Happy.Delegates
 {
-    public sealed partial class DelagateExecutor
+    public sealed partial class DelegateExecutor
     {
-		public TResult ExecuteFunc<TResult>(Func<TResult> func)
+		public void ExecuteAction(Action action)
 		{
 			Func<object> delagateWapper = ()=> { 
-				return func(); 
+				action(); 
+
+				return null; 
 			};
 
-			var context = new DelagateContext(this, delagateWapper);
+			var context = new DelegateExecuteContext(this, delagateWapper);
 
-			return (TResult)context.Next();
+			context.Next();
 		}
 <#
 for (var i = 1; i <= 16; i++)
@@ -45,27 +47,29 @@ for (var i = 1; i <= 16; i++)
 	var argumentsStr = string.Join(", ", arguments);
 #>
 
-		public TResult ExecuteFunc<<#= genericParametersStr #>, TResult>(Func<<#= genericParametersStr #>, TResult> func, <#= parametersStr #>)
+		public void ExecuteAction<<#= genericParametersStr #>>(Action<<#= genericParametersStr #>> action, <#= parametersStr #>)
 		{
 			Func<object> delagateWapper = ()=> { 
-				return func(<#= argumentsStr #>);
+				action(<#= argumentsStr #>); 
+
+				return null; 
 			};
 
-			var arguments = new List<DelagateArgument>();
+			var arguments = new List<DelegateArgument>();
 <#
 for (var j = 1; j <= i; j++)
 {
 			var argumentTypeStr = string.Format("T{0}", j);
 			var argumentStr = string.Format("arg{0}", j);
 	#>
-			arguments.Add(new DelagateArgument(typeof(<#= argumentTypeStr #>), <#= argumentStr #>));
+			arguments.Add(new DelegateArgument(typeof(<#= argumentTypeStr #>), <#= argumentStr #>));
 <#
 }
 #>
 
-			var context = new DelagateContext(this, delagateWapper, arguments);
+			var context = new DelegateExecuteContext(this, delagateWapper, arguments);
 
-			return (TResult)context.Next();
+			context.Next();
 		}
 <#
 }

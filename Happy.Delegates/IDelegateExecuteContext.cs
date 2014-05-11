@@ -9,12 +9,12 @@ namespace Happy.Delegates
     /// <summary>
     /// 委托上下文。
     /// </summary>
-    public interface IDelagateContext
+    public interface IDelegateExecuteContext
     {
         /// <summary>
         /// 参数集合。
         /// </summary>
-        ReadOnlyCollection<DelagateArgument> Arguments { get; }
+        ReadOnlyCollection<DelegateArgument> Arguments { get; }
 
         /// <summary>
         /// 执行下一个拦截器，如果到终点了，就执行目标委托。

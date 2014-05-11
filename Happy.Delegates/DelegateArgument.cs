@@ -8,9 +8,9 @@ namespace Happy.Delegates
     /// <summary>
     /// 委托参数。
     /// </summary>
-    public sealed class DelagateArgument
+    public sealed class DelegateArgument
     {
-        internal DelagateArgument(Type type, object value)
+        internal DelegateArgument(Type type, object value)
         {
             Check.MustNotNull(type, "type");
 

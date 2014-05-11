@@ -9,12 +9,12 @@ using NUnit.Framework;
 namespace Happy.Delegates.Test
 {
     [TestFixture]
-    public class DelagateExecutorTest
+    public class DelegateExecutorTest
     {
         [Test]
         public void ExecuteFunc_Test()
         {
-            var result = DelagateExecutor.New()
+            var result = DelegateExecutor.New()
                                     .RegisterInterceptor(new TestDelagateInterceptor())
                                     .ExecuteFunc(this.TestFunc, "hello，", "world！");
 
@@ -24,7 +24,7 @@ namespace Happy.Delegates.Test
         [Test]
         public void ExecuteAction_Test()
         {
-            DelagateExecutor.New()
+            DelegateExecutor.New()
                             .RegisterInterceptor(new TestDelagateInterceptor())
                             .ExecuteAction(this.TestAction, "hello，", "world！");
         }
@@ -39,9 +39,9 @@ namespace Happy.Delegates.Test
             Console.WriteLine(arg1 + arg2);
         }
 
-        private sealed class TestDelagateInterceptor : IDelagateInterceptor
+        private sealed class TestDelagateInterceptor : IDelegateInterceptor
         {
-            public object Intercept(IDelagateContext context)
+            public object Intercept(IDelegateExecuteContext context)
             {
                 foreach (var item in context.Arguments)
                 {

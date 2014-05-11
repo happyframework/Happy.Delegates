@@ -10,25 +10,25 @@ namespace Happy.Delegates
     /// <summary>
     /// 委托执行器。
     /// </summary>
-    public sealed partial class DelagateExecutor
+    public sealed partial class DelegateExecutor
     {
-        private readonly List<IDelagateInterceptor> _interceptors
-            = new List<IDelagateInterceptor>();
+        private readonly List<IDelegateInterceptor> _interceptors
+            = new List<IDelegateInterceptor>();
 
-        private DelagateExecutor() { }
+        private DelegateExecutor() { }
 
         /// <summary>
         /// 创建一个新的委托执行器。
         /// </summary>
-        public static DelagateExecutor New()
+        public static DelegateExecutor New()
         {
-            return new DelagateExecutor();
+            return new DelegateExecutor();
         }
 
         /// <summary>
         /// 注册<paramref name="interceptor"/>。
         /// </summary>
-        public DelagateExecutor RegisterInterceptor(IDelagateInterceptor interceptor)
+        public DelegateExecutor RegisterInterceptor(IDelegateInterceptor interceptor)
         {
             Check.MustNotNull(interceptor, "interceptor");
 
@@ -37,11 +37,11 @@ namespace Happy.Delegates
             return this;
         }
 
-        internal ReadOnlyCollection<IDelagateInterceptor> Interceptors
+        internal ReadOnlyCollection<IDelegateInterceptor> Interceptors
         {
             get
             {
-                return new ReadOnlyCollection<IDelagateInterceptor>(_interceptors);
+                return new ReadOnlyCollection<IDelegateInterceptor>(_interceptors);
             }
         }
     }
