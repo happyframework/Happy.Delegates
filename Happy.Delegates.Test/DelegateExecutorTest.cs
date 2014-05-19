@@ -48,7 +48,7 @@ namespace Happy.Delegates.Test
                     Console.WriteLine(string.Format("参数：{0}", item.Value));
                 }
 
-                return "【" + context.Next() + "】";
+                return "【" + context.Proceed() + "】";
             }
         }
     }

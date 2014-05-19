@@ -24,7 +24,7 @@ namespace Happy.Delegates
 
 			var context = new DelegateExecuteContext(this, delagateWapper);
 
-			return (TResult)context.Next();
+			return (TResult)context.Proceed();
 		}
 <#
 for (var i = 1; i <= 16; i++)
@@ -65,7 +65,7 @@ for (var j = 1; j <= i; j++)
 
 			var context = new DelegateExecuteContext(this, delagateWapper, arguments);
 
-			return (TResult)context.Next();
+			return (TResult)context.Proceed();
 		}
 <#
 }

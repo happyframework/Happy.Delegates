@@ -40,7 +40,7 @@ namespace Happy.Delegates.Impls
             }
         }
 
-        public object Next()
+        public object Proceed()
         {
             _currentInterceptorIndex++;
             if (_currentInterceptorIndex < _executor.Interceptors.Count)
